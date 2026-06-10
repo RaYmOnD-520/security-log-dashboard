@@ -1,32 +1,40 @@
+import { useState } from 'react'
 import Navbar from './components/Navbar'
+import LogUpload from './components/LogUpload'
 import { FaExclamationTriangle, FaCheckCircle, FaExclamationCircle, FaDatabase } from 'react-icons/fa'
 
 function App() {
+  const [analysisData, setAnalysisData] = useState(null)
+
+  const handleAnalysisComplete = (data) => {
+    setAnalysisData(data)
+  }
+
   const stats = [
     {
       title: 'Total Events',
-      value: '0',
+      value: analysisData?.total_events || 0,
       icon: FaDatabase,
       color: 'text-blue-500',
       bgColor: 'bg-blue-500/10'
     },
     {
       title: 'Threats Detected',
-      value: '0',
+      value: analysisData?.threats || 0,
       icon: FaExclamationTriangle,
       color: 'text-red-500',
       bgColor: 'bg-red-500/10'
     },
     {
       title: 'Warnings',
-      value: '0',
+      value: analysisData?.warnings || 0,
       icon: FaExclamationCircle,
       color: 'text-yellow-500',
       bgColor: 'bg-yellow-500/10'
     },
     {
       title: 'Clean Events',
-      value: '0',
+      value: analysisData?.clean_events || 0,
       icon: FaCheckCircle,
       color: 'text-green-500',
       bgColor: 'bg-green-500/10'
@@ -58,11 +66,20 @@ function App() {
           ))}
         </div>
 
+        {/* Log Upload Component */}
+        <div className="mb-8">
+          <LogUpload onAnalysisComplete={handleAnalysisComplete} />
+        </div>
+
         {/* Dashboard Content Area */}
         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
           <h2 className="text-xl font-semibold text-white mb-4">Security Events</h2>
           <div className="text-center py-12">
-            <p className="text-gray-400">No security events to display</p>
+            <p className="text-gray-400">
+              {analysisData
+                ? `Showing ${analysisData.total_events} events`
+                : 'Upload a log file to begin analysis'}
+            </p>
           </div>
         </div>
       </main>
