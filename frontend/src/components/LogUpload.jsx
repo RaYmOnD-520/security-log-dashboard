@@ -66,7 +66,7 @@ function LogUpload({ onAnalysisComplete }) {
     formData.append('file', file)
 
     try {
-      const response = await fetch('http://localhost:8000/analyse', {
+      const response = await fetch('/api/analyse', {
         method: 'POST',
         body: formData
       })
