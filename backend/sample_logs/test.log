@@ -1,0 +1,27 @@
+2024-01-15 10:23:45 [INFO] User admin logged in successfully from 192.168.1.50
+2024-01-15 10:24:12 [ERROR] Failed login attempt from 192.168.1.100 - Invalid password
+2024-01-15 10:24:30 [INFO] Database backup completed successfully
+2024-01-15 10:25:01 [ERROR] Failed login attempt from 203.0.113.45 - Authentication failure
+2024-01-15 10:25:15 [WARNING] Port scan detected from 198.51.100.78 - SYN flood attack
+2024-01-15 10:26:33 [INFO] System health check passed
+2024-01-15 10:27:44 [ERROR] Failed login attempt from 10.0.0.250 - Invalid username
+2024-01-15 10:28:10 [CRITICAL] SQL injection attempt detected: SELECT * FROM users WHERE id=1 OR 1=1
+2024-01-15 10:28:55 [INFO] Backup scheduled for 02:00 AM
+2024-01-15 10:29:12 [ERROR] Failed login attempt from 172.16.0.99 - Multiple failed attempts
+2024-01-15 10:30:00 [INFO] User support logged in successfully from 192.168.1.75
+2024-01-15 10:30:45 [ERROR] Brute force attack detected from 45.76.89.123 - Too many attempts
+2024-01-15 10:31:02 [ERROR] Failed login attempt from 45.76.89.123 - Invalid password
+2024-01-15 10:31:15 [ERROR] Failed login attempt from 45.76.89.123 - Invalid password
+2024-01-15 10:31:28 [ERROR] Failed login attempt from 45.76.89.123 - Authentication failure
+2024-01-15 10:31:41 [ERROR] Failed login attempt from 45.76.89.123 - Invalid password
+2024-01-15 10:31:54 [ERROR] Failed login attempt from 45.76.89.123 - Invalid password
+2024-01-15 10:32:07 [ERROR] Failed login attempt from 45.76.89.123 - Authentication failure
+2024-01-15 10:32:20 [WARNING] IP 45.76.89.123 has been temporarily blocked - Rate limit exceeded
+2024-01-15 10:33:00 [INFO] Application server restarted successfully
+2024-01-15 10:34:15 [INFO] User developer logged in successfully from 192.168.1.120
+2024-01-15 10:35:22 [WARNING] Suspicious activity detected from 198.18.0.1 - NMAP port probe
+2024-01-15 10:36:10 [INFO] Cache cleared successfully
+2024-01-15 10:37:45 [ERROR] Failed login attempt from 203.0.113.89 - Invalid password
+2024-01-15 10:38:30 [INFO] System monitoring active
+2024-01-15 10:39:12 [INFO] API endpoint /health responded with status 200
+2024-01-15 10:40:00 [INFO] Scheduled task executed successfully
