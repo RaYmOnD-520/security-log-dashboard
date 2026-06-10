@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
 import LogUpload from './components/LogUpload'
+import EventsTable from './components/EventsTable'
 import { FaExclamationTriangle, FaCheckCircle, FaExclamationCircle, FaDatabase } from 'react-icons/fa'
 
 function App() {
@@ -71,17 +72,8 @@ function App() {
           <LogUpload onAnalysisComplete={handleAnalysisComplete} />
         </div>
 
-        {/* Dashboard Content Area */}
-        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-white mb-4">Security Events</h2>
-          <div className="text-center py-12">
-            <p className="text-gray-400">
-              {analysisData
-                ? `Showing ${analysisData.total_events} events`
-                : 'Upload a log file to begin analysis'}
-            </p>
-          </div>
-        </div>
+        {/* Events Table */}
+        <EventsTable events={analysisData?.events || []} />
       </main>
     </div>
   )
