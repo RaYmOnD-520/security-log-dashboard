@@ -45,7 +45,6 @@ function App() {
   return (
     <div className="min-h-screen bg-[#0f172a]">
       <Navbar />
-
       <main className="pt-24 px-6 pb-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -66,12 +65,10 @@ function App() {
             </div>
           ))}
         </div>
-
         {/* Log Upload Component */}
         <div className="mb-8">
           <LogUpload onAnalysisComplete={handleAnalysisComplete} />
         </div>
-
         {/* Events Table */}
         <EventsTable events={analysisData?.events || []} />
       </main>

@@ -10,7 +10,6 @@ function Navbar() {
             <FaShieldAlt className="text-green-500 text-2xl" />
             <span className="text-xl font-bold text-green-500">SecureLog</span>
           </div>
-
           {/* Right side - Dashboard label and status */}
           <div className="flex items-center gap-6">
             <span className="text-gray-300 font-medium">Dashboard</span>

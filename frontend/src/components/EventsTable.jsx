@@ -10,7 +10,6 @@ function EventsTable({ events = [] }) {
   // Filter events based on search term
   const filteredEvents = useMemo(() => {
     if (!searchTerm.trim()) return events
-
     const term = searchTerm.toLowerCase()
     return events.filter(event =>
       event.severity?.toLowerCase().includes(term) ||
@@ -88,7 +87,6 @@ function EventsTable({ events = [] }) {
         <h2 className="text-xl font-semibold text-white">
           Security Events ({filteredEvents.length})
         </h2>
-
         {/* Search Input */}
         <div className="relative">
           <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -169,7 +167,6 @@ function EventsTable({ events = [] }) {
           <p className="text-gray-400 text-sm">
             Showing {indexOfFirstEvent + 1} to {Math.min(indexOfLastEvent, filteredEvents.length)} of {filteredEvents.length} events
           </p>
-
           <div className="flex items-center gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
@@ -182,7 +179,6 @@ function EventsTable({ events = [] }) {
             >
               <FaChevronLeft />
             </button>
-
             <div className="flex items-center gap-1">
               {[...Array(totalPages)].map((_, i) => (
                 <button
@@ -198,7 +194,6 @@ function EventsTable({ events = [] }) {
                 </button>
               ))}
             </div>
-
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}

@@ -1,10 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-import os
 from log_parser import parse_log_file
-
-load_dotenv()
+import uvicorn
 
 app = FastAPI(title="Security Log Dashboard API")
 
@@ -16,41 +13,39 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/health")
 async def health_check():
+    """Health check endpoint"""
     return {"status": "ok"}
 
+
 @app.post("/analyse")
-async def analyse_logs(file: UploadFile = File(...)):
-    """Analyse uploaded log file for security threats."""
+async def analyse_log(file: UploadFile = File(...)):
+    """
+    Analyse uploaded log file for security threats.
+
+    Args:
+        file: Uploaded log file
+
+    Returns:
+        Analysis results with threats, warnings, and event details
+    """
     try:
-        # Validate file type
-        if not file.filename.endswith(('.log', '.txt')):
-            raise HTTPException(
-                status_code=400,
-                detail="Invalid file type. Only .log and .txt files are supported."
-            )
-
-        # Read file content
         content = await file.read()
-        content_str = content.decode('utf-8')
 
-        # Parse the log file
-        result = parse_log_file(content_str)
+        try:
+            text_content = content.decode('utf-8')
+        except UnicodeDecodeError:
+            text_content = content.decode('latin-1')
 
-        return result
+        analysis_result = parse_log_file(text_content)
 
-    except UnicodeDecodeError:
-        raise HTTPException(
-            status_code=400,
-            detail="Unable to decode file. Please ensure it's a valid text file."
-        )
+        return analysis_result
+
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error processing log file: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error processing log file: {str(e)}")
+
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

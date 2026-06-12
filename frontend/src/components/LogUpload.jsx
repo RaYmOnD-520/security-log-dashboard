@@ -22,7 +22,6 @@ function LogUpload({ onAnalysisComplete }) {
     e.preventDefault()
     setIsDragging(false)
     setError(null)
-
     const droppedFile = e.dataTransfer.files[0]
     validateAndSetFile(droppedFile)
   }, [])
@@ -34,16 +33,13 @@ function LogUpload({ onAnalysisComplete }) {
 
   const validateAndSetFile = (selectedFile) => {
     if (!selectedFile) return
-
     const validExtensions = ['.log', '.txt']
     const fileExtension = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')).toLowerCase()
-
     if (!validExtensions.includes(fileExtension)) {
       setError('Invalid file type. Please upload .log or .txt files only.')
       setFile(null)
       return
     }
-
     setFile(selectedFile)
     setError(null)
   }
@@ -58,24 +54,19 @@ function LogUpload({ onAnalysisComplete }) {
 
   const handleAnalyze = async () => {
     if (!file) return
-
     setIsAnalyzing(true)
     setError(null)
-
     const formData = new FormData()
     formData.append('file', file)
-
     try {
       const response = await fetch('/api/analyse', {
         method: 'POST',
         body: formData
       })
-
       if (!response.ok) {
         const errorData = await response.json()
         throw new Error(errorData.detail || 'Analysis failed')
       }
-
       const result = await response.json()
       onAnalysisComplete(result)
       setFile(null)
@@ -89,7 +80,6 @@ function LogUpload({ onAnalysisComplete }) {
   return (
     <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-6">
       <h2 className="text-xl font-semibold text-white mb-4">Upload Security Logs</h2>
-
       <motion.div
         className={`border-2 border-dashed rounded-lg p-8 text-center transition-all duration-300 ${
           isDragging
