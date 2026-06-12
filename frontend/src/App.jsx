@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Navbar from './components/Navbar'
 import LogUpload from './components/LogUpload'
 import EventsTable from './components/EventsTable'
+import Charts from './components/Charts'
 import { FaExclamationTriangle, FaCheckCircle, FaExclamationCircle, FaDatabase } from 'react-icons/fa'
 
 function App() {
@@ -65,6 +66,8 @@ function App() {
             </div>
           ))}
         </div>
+        {/* Charts */}
+        {analysisData && <Charts events={analysisData.events || []} />}
         {/* Log Upload Component */}
         <div className="mb-8">
           <LogUpload onAnalysisComplete={handleAnalysisComplete} />
