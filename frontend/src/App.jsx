@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import LogUpload from './components/LogUpload'
 import EventsTable from './components/EventsTable'
 import Charts from './components/Charts'
+import ThreatSummary from './components/ThreatSummary'
 import { FaExclamationTriangle, FaCheckCircle, FaExclamationCircle, FaDatabase } from 'react-icons/fa'
 
 function App() {
@@ -68,6 +69,8 @@ function App() {
         </div>
         {/* Charts */}
         {analysisData && <Charts events={analysisData.events || []} />}
+        {/* AI Threat Summary */}
+        {analysisData && <ThreatSummary analysisData={analysisData} />}
         {/* Log Upload Component */}
         <div className="mb-8">
           <LogUpload onAnalysisComplete={handleAnalysisComplete} />
